@@ -35,10 +35,7 @@ export default function RootLayout() {
             headerShadowVisible: true,
           }}
         >
-          <Stack.Screen
-            name="index"
-            options={{ headerShown: true, headerTitle: "todos" }}
-          />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="dark" />
