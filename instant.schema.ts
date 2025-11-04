@@ -4,35 +4,18 @@ import { i } from "@instantdb/react-native";
 
 const _schema = i.schema({
   entities: {
-    $files: i.entity({
-      path: i.string().unique().indexed(),
-      url: i.string(),
-    }),
-    $users: i.entity({
-      email: i.string().unique().indexed().optional(),
-      imageURL: i.string().optional(),
-      type: i.string().optional(),
-    }),
-    colors: i.entity({
-      value: i.string(),
+    todos: i.entity({
+      text: i.string(),
+      done: i.boolean(),
+      createdAt: i.number().indexed(),
     }),
   },
-  rooms: {},
-  links: {
-    $usersLinkedPrimaryUser: {
-      forward: {
-        on: "$users",
-        has: "one",
-        label: "linkedPrimaryUser",
-        onDelete: "cascade",
-      },
-      reverse: {
-        on: "$users",
-        has: "many",
-        label: "linkedGuestUsers",
-      },
+  rooms: {
+    todos: {
+      presence: i.entity({}),
     },
   },
+  links: {},
 });
 
 // This helps Typescript display nicer intellisense
